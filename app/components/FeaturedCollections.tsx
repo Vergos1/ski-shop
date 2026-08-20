@@ -1,9 +1,9 @@
-import {Image} from '@shopify/hydrogen';
+import { Image } from '@shopify/hydrogen';
 
-import type {HomepageFeaturedCollectionsQuery} from 'storefrontapi.generated';
-import {Heading, Section} from '~/components/Text';
-import {Grid} from '~/components/Grid';
-import {Link} from '~/components/Link';
+import type { HomepageFeaturedCollectionsQuery } from 'storefrontapi.generated';
+import { Grid } from '~/components/Grid';
+import { Link } from '~/components/Link';
+import { Heading, Section } from '~/components/Text';
 
 type FeaturedCollectionsProps = HomepageFeaturedCollectionsQuery & {
   title?: string;
@@ -15,11 +15,10 @@ export function FeaturedCollections({
   title = 'Collections',
   ...props
 }: FeaturedCollectionsProps) {
-  const haveCollections = collections?.nodes?.length > 0;
-  if (!haveCollections) return null;
+  const collectionsWithImage = collections.nodes.filter((item) => item.image) ?? [];
 
-  const collectionsWithImage = collections.nodes.filter((item) => item.image);
-
+  if (!collectionsWithImage.length) return null;
+  
   return (
     <Section {...props} heading={title}>
       <Grid items={collectionsWithImage.length}>
