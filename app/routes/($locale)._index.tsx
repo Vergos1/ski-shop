@@ -12,6 +12,7 @@ import {Hero} from '~/components/Hero';
 import {ProductSwimlane} from '~/components/ProductSwimlane';
 import {routeHeaders} from '~/data/cache';
 import {MEDIA_FRAGMENT, PRODUCT_CARD_FRAGMENT} from '~/data/fragments';
+import {COLLECTIONS_HOME} from '~/lib/collections-handle';
 import {getHeroPlaceholder} from '~/lib/placeholders';
 import {seoPayload} from '~/lib/seo.server';
 
@@ -46,7 +47,7 @@ export async function loader(args: LoaderFunctionArgs) {
 async function loadCriticalData({context, request}: LoaderFunctionArgs) {
   const [{shop, hero}] = await Promise.all([
     context.storefront.query(HOMEPAGE_SEO_QUERY, {
-      variables: {handle: 'winter-2026'},
+      variables: {handle: COLLECTIONS_HOME.primary},
     }),
     // Add other queries here, so that they are loaded in parallel
   ]);
@@ -88,7 +89,7 @@ function loadDeferredData({context}: LoaderFunctionArgs) {
   const secondaryHero = context.storefront
     .query(COLLECTION_HERO_QUERY, {
       variables: {
-        handle: 'winter-2025',
+        handle: COLLECTIONS_HOME.secondary,
         country,
         language,
       },
@@ -117,7 +118,7 @@ function loadDeferredData({context}: LoaderFunctionArgs) {
   const tertiaryHero = context.storefront
     .query(COLLECTION_HERO_QUERY, {
       variables: {
-        handle: 'winter-2024',
+        handle: COLLECTIONS_HOME.tertiary,
         country,
         language,
       },
