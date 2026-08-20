@@ -46,7 +46,7 @@ export async function loader(args: LoaderFunctionArgs) {
 async function loadCriticalData({context, request}: LoaderFunctionArgs) {
   const [{shop, hero}] = await Promise.all([
     context.storefront.query(HOMEPAGE_SEO_QUERY, {
-      variables: {handle: 'freestyle'},
+      variables: {handle: 'winter-2026'},
     }),
     // Add other queries here, so that they are loaded in parallel
   ]);
@@ -149,7 +149,7 @@ export default function Homepage() {
     featuredCollections,
     featuredProducts,
   } = useLoaderData<typeof loader>();
-
+  console.log('primaryHero', primaryHero);
   // TODO: skeletons vs placeholders
   const skeletons = getHeroPlaceholder([{}, {}, {}]);
 
