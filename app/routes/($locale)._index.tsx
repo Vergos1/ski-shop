@@ -88,7 +88,7 @@ function loadDeferredData({context}: LoaderFunctionArgs) {
   const secondaryHero = context.storefront
     .query(COLLECTION_HERO_QUERY, {
       variables: {
-        handle: 'backcountry',
+        handle: 'winter-2025',
         country,
         language,
       },
@@ -117,7 +117,7 @@ function loadDeferredData({context}: LoaderFunctionArgs) {
   const tertiaryHero = context.storefront
     .query(COLLECTION_HERO_QUERY, {
       variables: {
-        handle: 'winter-2022',
+        handle: 'winter-2024',
         country,
         language,
       },
