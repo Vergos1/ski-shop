@@ -149,7 +149,7 @@ export default function Homepage() {
     featuredCollections,
     featuredProducts,
   } = useLoaderData<typeof loader>();
-  console.log('primaryHero', primaryHero);
+
   // TODO: skeletons vs placeholders
   const skeletons = getHeroPlaceholder([{}, {}, {}]);
 
