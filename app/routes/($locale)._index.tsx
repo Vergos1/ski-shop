@@ -1,19 +1,19 @@
-import { Await, useLoaderData } from '@remix-run/react';
-import { getSeoMeta } from '@shopify/hydrogen';
+import {Await, useLoaderData} from '@remix-run/react';
+import {getSeoMeta} from '@shopify/hydrogen';
 import {
-    defer,
-    type LoaderFunctionArgs,
-    type MetaArgs,
+  defer,
+  type LoaderFunctionArgs,
+  type MetaArgs,
 } from '@shopify/remix-oxygen';
-import { Suspense } from 'react';
+import {Suspense} from 'react';
 
-import { FeaturedCollections } from '~/components/FeaturedCollections';
-import { Hero } from '~/components/Hero';
-import { ProductSwimlane } from '~/components/ProductSwimlane';
-import { routeHeaders } from '~/data/cache';
-import { MEDIA_FRAGMENT, PRODUCT_CARD_FRAGMENT } from '~/data/fragments';
-import { getHeroPlaceholder } from '~/lib/placeholders';
-import { seoPayload } from '~/lib/seo.server';
+import {FeaturedCollections} from '~/components/FeaturedCollections';
+import {Hero} from '~/components/Hero';
+import {ProductSwimlane} from '~/components/ProductSwimlane';
+import {routeHeaders} from '~/data/cache';
+import {MEDIA_FRAGMENT, PRODUCT_CARD_FRAGMENT} from '~/data/fragments';
+import {getHeroPlaceholder} from '~/lib/placeholders';
+import {seoPayload} from '~/lib/seo.server';
 
 export const headers = routeHeaders;
 
