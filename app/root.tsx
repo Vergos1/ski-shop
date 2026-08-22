@@ -1,34 +1,34 @@
 import {
-  defer,
-  type LinksFunction,
-  type LoaderFunctionArgs,
-  type AppLoadContext,
-  type MetaArgs,
-} from '@shopify/remix-oxygen';
-import {
   isRouteErrorResponse,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-  useRouteLoaderData,
   useRouteError,
+  useRouteLoaderData,
   type ShouldRevalidateFunction,
 } from '@remix-run/react';
 import {
-  useNonce,
   Analytics,
-  getShopAnalytics,
   getSeoMeta,
+  getShopAnalytics,
+  useNonce,
   type SeoConfig,
 } from '@shopify/hydrogen';
+import {
+  defer,
+  type AppLoadContext,
+  type LinksFunction,
+  type LoaderFunctionArgs,
+  type MetaArgs,
+} from '@shopify/remix-oxygen';
 import invariant from 'tiny-invariant';
 
-import {PageLayout} from '~/components/PageLayout';
+import favicon from '~/assets/favicon.svg';
 import {GenericError} from '~/components/GenericError';
 import {NotFound} from '~/components/NotFound';
-import favicon from '~/assets/favicon.svg';
+import {PageLayout} from '~/components/PageLayout';
 import {seoPayload} from '~/lib/seo.server';
 import styles from '~/styles/app.css?url';
 
@@ -73,6 +73,16 @@ export const links: LinksFunction = () => {
     {
       rel: 'preconnect',
       href: 'https://shop.app',
+    },
+    {rel: 'preconnect', href: 'https://fonts.googleapis.com'},
+    {
+      rel: 'preconnect',
+      href: 'https://fonts.gstatic.com',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap',
     },
     {rel: 'icon', type: 'image/svg+xml', href: favicon},
   ];
