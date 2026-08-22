@@ -1,6 +1,7 @@
 import {useLocation, useRouteLoaderData} from '@remix-run/react';
-import type {MoneyV2} from '@shopify/hydrogen/storefront-api-types';
 import type {FulfillmentStatus} from '@shopify/hydrogen/customer-account-api-types';
+import type {MoneyV2} from '@shopify/hydrogen/storefront-api-types';
+import {twMerge} from 'tailwind-merge';
 import typographicBase from 'typographic-base';
 
 import type {
@@ -8,9 +9,10 @@ import type {
   MenuFragment,
   ParentMenuItemFragment,
 } from 'storefrontapi.generated';
-import type {RootLoader} from '~/root';
 import {countries} from '~/data/countries';
+import type {RootLoader} from '~/root';
 
+import clsx, {type ClassValue} from 'clsx';
 import type {I18nLocale} from './type';
 
 type EnhancedMenuItemProps = {
@@ -311,4 +313,8 @@ export function isLocalPath(url: string) {
   }
 
   return false;
+}
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
 }
