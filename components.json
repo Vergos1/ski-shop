@@ -3,6 +3,9 @@
   "style": "new-york",
   "rsc": false,
   "tsx": true,
+  "registries": {
+    "@commercn": "https://commercn.com/r/{name}.json"
+  },
   "tailwind": {
     "config": "tailwind.config.js",
     "css": "app/styles/app.css",
