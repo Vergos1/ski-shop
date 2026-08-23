@@ -1,44 +1,44 @@
-import {useRef, Suspense} from 'react';
 import {Disclosure, Listbox} from '@headlessui/react';
+import {Await, useLoaderData} from '@remix-run/react';
 import {
-  defer,
-  type MetaArgs,
-  type LoaderFunctionArgs,
-} from '@shopify/remix-oxygen';
-import {useLoaderData, Await} from '@remix-run/react';
-import {
+  Analytics,
+  getAdjacentAndFirstAvailableVariants,
+  getProductOptions,
+  getSelectedProductOptions,
   getSeoMeta,
   Money,
   ShopPayButton,
-  getSelectedProductOptions,
-  Analytics,
   useOptimisticVariant,
-  getAdjacentAndFirstAvailableVariants,
   useSelectedOptionInUrlParam,
-  getProductOptions,
   type MappedProductOptions,
 } from '@shopify/hydrogen';
-import invariant from 'tiny-invariant';
-import clsx from 'clsx';
 import type {
   Maybe,
   ProductOptionValueSwatch,
 } from '@shopify/hydrogen/storefront-api-types';
+import {
+  defer,
+  type LoaderFunctionArgs,
+  type MetaArgs,
+} from '@shopify/remix-oxygen';
+import clsx from 'clsx';
+import {Suspense, useRef} from 'react';
+import invariant from 'tiny-invariant';
 
 import type {ProductFragment} from 'storefrontapi.generated';
-import {Heading, Section, Text} from '~/components/Text';
-import {Link} from '~/components/Link';
-import {Button} from '~/components/Button';
 import {AddToCartButton} from '~/components/AddToCartButton';
-import {Skeleton} from '~/components/Skeleton';
-import {ProductSwimlane} from '~/components/ProductSwimlane';
-import {ProductGallery} from '~/components/ProductGallery';
+import {Button} from '~/components/Button';
 import {IconCaret, IconCheck, IconClose} from '~/components/Icon';
-import {getExcerpt} from '~/lib/utils';
-import {seoPayload} from '~/lib/seo.server';
-import type {Storefront} from '~/lib/type';
+import {Link} from '~/components/Link';
+import {ProductGallery} from '~/components/ProductGallery';
+import {ProductSwimlane} from '~/components/ProductSwimlane';
+import {Skeleton} from '~/components/Skeleton';
+import {Heading, Section, Text} from '~/components/Text';
 import {routeHeaders} from '~/data/cache';
 import {MEDIA_FRAGMENT, PRODUCT_CARD_FRAGMENT} from '~/data/fragments';
+import {seoPayload} from '~/lib/seo.server';
+import type {Storefront} from '~/lib/type';
+import {getExcerpt} from '~/lib/utils';
 
 export const headers = routeHeaders;
 
