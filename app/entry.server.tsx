@@ -17,6 +17,9 @@ export default async function handleRequest(
       storeDomain: context.env.PUBLIC_STORE_DOMAIN,
     },
     imgSrc: [
+      'self',
+      'data:',
+      'http://localhost:3000',
       'https://images.unsplash.com',
       'https://cdn.shopify.com',
       'https://fonts.googleapis.com',
