@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-import {missingClass, formatText} from '~/lib/utils';
+import {formatText, missingClass} from '~/lib/utils';
 
 export function Text({
   as: Component = 'span',
@@ -30,8 +30,8 @@ export function Text({
   };
 
   const sizes: Record<string, string> = {
-    lead: 'text-lead font-medium',
-    copy: 'text-copy',
+    lead: 'text-lead font-normal',
+    copy: 'text-copy font-light',
     fine: 'text-fine subpixel-antialiased',
   };
 
@@ -72,10 +72,10 @@ export function Heading({
   width?: 'default' | 'narrow' | 'wide';
 } & React.HTMLAttributes<HTMLHeadingElement>) {
   const sizes = {
-    display: 'font-bold text-display',
-    heading: 'font-bold text-heading',
-    lead: 'font-bold text-lead',
-    copy: 'font-medium text-copy',
+    display: 'font-normal text-display',
+    heading: 'font-normal text-heading',
+    lead: 'font-normal text-lead',
+    copy: 'font-light text-copy',
   };
 
   const widths = {
