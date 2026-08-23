@@ -72,7 +72,7 @@ export function Hero({
               </Heading>
             )}
             {byline?.value && (
-              <Text format width="narrow" as="p" size="lead">
+              <Text format width="narrow" as="p" color="primary" size="lead">
                 {byline.value}
               </Text>
             )}
