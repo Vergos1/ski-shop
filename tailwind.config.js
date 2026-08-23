@@ -80,9 +80,8 @@ export default {
         mobileGallery: 'calc(100vw - 3rem)',
       },
       fontFamily: {
-        sans: ['Helvetica Neue', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        serif: ['"IBMPlexSerif"', 'Palatino', 'ui-serif'],
         syne: ['Syne', 'sans-serif'],
+        unbounded: ['Unbounded', 'sans-serif'],
       },
       fontSize: {
         display: ['var(--font-size-display)', '1.1'],
