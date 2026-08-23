@@ -1,27 +1,27 @@
-import clsx from 'clsx';
-import {useRef} from 'react';
-import useScroll from 'react-use/esm/useScroll';
 import {
-  flattenConnection,
   CartForm,
+  flattenConnection,
   Image,
   Money,
-  useOptimisticData,
   OptimisticInput,
+  useOptimisticData,
   type CartReturn,
 } from '@shopify/hydrogen';
 import type {
-  Cart as CartType,
   CartCost,
   CartLine,
   CartLineUpdateInput,
+  Cart as CartType,
 } from '@shopify/hydrogen/storefront-api-types';
+import clsx from 'clsx';
+import {useRef} from 'react';
+import useScroll from 'react-use/esm/useScroll';
 
 import {Button} from '~/components/Button';
-import {Text, Heading} from '~/components/Text';
-import {Link} from '~/components/Link';
-import {IconRemove} from '~/components/Icon';
 import {FeaturedProducts} from '~/components/FeaturedProducts';
+import {IconRemove} from '~/components/Icon';
+import {Link} from '~/components/Link';
+import {Heading, Text} from '~/components/Text';
 import {getInputStyleClasses} from '~/lib/utils';
 
 type Layouts = 'page' | 'drawer';
@@ -174,7 +174,7 @@ function CartLines({
       aria-labelledby="cart-contents"
       className={className}
     >
-      <ul className="grid gap-6 md:gap-10">
+      <ul className="grid gap-6 md:gap-10 text-primary">
         {currentLines.map((line) => (
           <CartLineItem key={line.id} line={line as CartLine} />
         ))}
