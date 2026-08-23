@@ -10,15 +10,7 @@ import {Cart} from '~/components/Cart';
 import {CartLoading} from '~/components/CartLoading';
 import {CountrySelector} from '~/components/CountrySelector';
 import {Drawer, useDrawer} from '~/components/Drawer';
-import {
-  IconAccount,
-  IconBag,
-  IconCaret,
-  IconLogin,
-  IconMenu,
-  IconSearch,
-} from '~/components/Icon';
-import {Input} from '~/components/Input';
+import {IconCaret, IconLogin, IconMenu, IconSearch} from '~/components/Icon';
 import {Link} from '~/components/Link';
 import {Heading, Section, Text} from '~/components/Text';
 import {useCartFetchers} from '~/hooks/useCartFetchers';
@@ -31,6 +23,7 @@ import {
 import {cn} from '~/lib/utils/cn';
 import type {RootLoader} from '~/root';
 import {Button} from './ui/button';
+import {Input} from './ui/input';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -109,6 +102,7 @@ function Header({title, menu}: {title: string; menu?: EnhancedMenu}) {
 
 function CartDrawer({isOpen, onClose}: {isOpen: boolean; onClose: () => void}) {
   const rootData = useRouteLoaderData<RootLoader>('root');
+  console.log(rootData);
   if (!rootData) return null;
 
   return (
@@ -221,7 +215,7 @@ function MobileHeader({
                 : 'focus:border-primary/20'
             }
             type="search"
-            variant="minisearch"
+            // variant="minisearch"
             placeholder="Search"
             name="q"
           />
@@ -261,7 +255,7 @@ function DesktopHeader({
 }) {
   const params = useParams();
   const {y} = useWindowScroll();
-  console.log(y);
+
   return (
     <header
       role="banner"
@@ -333,7 +327,7 @@ function DesktopHeader({
                     : 'focus:border-primary/20'
                 }
                 type="search"
-                variant="minisearch"
+                // variant="minisearch"
                 placeholder="Search"
                 name="q"
               />
