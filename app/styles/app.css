@@ -125,8 +125,17 @@ shop-pay-button {
     }
 
     body {
-        @apply border-primary/10 bg-background text-primary/90 antialiased font-syne;
+        @apply border-primary/10 bg-background text-primary/90 antialiased font-unbounded;
     }
+
+    /* h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-syne
+    } */
 
     html {
         scroll-padding-top: 10rem;
