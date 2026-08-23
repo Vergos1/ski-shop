@@ -61,7 +61,7 @@
     --muted: 0 0% 87%;
     --muted-foreground: 0 0% 45.1%;
 
-    --accent: 0 0% 96.1%;
+    --accent: 0 0% 11%;
     --accent-foreground: 0 0% 9%;
 
     --destructive: 0 84.2% 60.2%;
@@ -84,7 +84,7 @@
     }
 
     @media (min-width: 48em) {
-        --height-nav: 6rem;
+        --height-nav: 9rem;
         --font-size-heading: 2rem;
         /* text-4xl */
 
