@@ -16,6 +16,11 @@ export default async function handleRequest(
       checkoutDomain: context.env.PUBLIC_CHECKOUT_DOMAIN,
       storeDomain: context.env.PUBLIC_STORE_DOMAIN,
     },
+    imgSrc: [
+      'https://images.unsplash.com',
+      'https://cdn.shopify.com',
+      'https://fonts.googleapis.com',
+    ],
     styleSrc: [
       "'self'",
       "'unsafe-inline'",
