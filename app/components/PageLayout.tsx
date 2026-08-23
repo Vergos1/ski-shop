@@ -1,33 +1,36 @@
-import {useParams, Form, Await, useRouteLoaderData} from '@remix-run/react';
-import useWindowScroll from 'react-use/esm/useWindowScroll';
 import {Disclosure} from '@headlessui/react';
-import {Suspense, useEffect, useMemo} from 'react';
+import {Await, Form, useParams, useRouteLoaderData} from '@remix-run/react';
 import {CartForm} from '@shopify/hydrogen';
+import {Suspense, useEffect, useMemo} from 'react';
+import useWindowScroll from 'react-use/esm/useWindowScroll';
 
+import {Backpack, CircleUserRound, Search, UserRound} from 'lucide-react';
 import {type LayoutQuery} from 'storefrontapi.generated';
-import {Text, Heading, Section} from '~/components/Text';
-import {Link} from '~/components/Link';
 import {Cart} from '~/components/Cart';
 import {CartLoading} from '~/components/CartLoading';
-import {Input} from '~/components/Input';
-import {Drawer, useDrawer} from '~/components/Drawer';
 import {CountrySelector} from '~/components/CountrySelector';
+import {Drawer, useDrawer} from '~/components/Drawer';
 import {
-  IconMenu,
-  IconCaret,
-  IconLogin,
   IconAccount,
   IconBag,
+  IconCaret,
+  IconLogin,
+  IconMenu,
   IconSearch,
 } from '~/components/Icon';
+import {Input} from '~/components/Input';
+import {Link} from '~/components/Link';
+import {Heading, Section, Text} from '~/components/Text';
+import {useCartFetchers} from '~/hooks/useCartFetchers';
+import {useIsHydrated} from '~/hooks/useIsHydrated';
 import {
-  type EnhancedMenu,
   type ChildEnhancedMenuItem,
+  type EnhancedMenu,
   useIsHomePath,
 } from '~/lib/utils';
-import {useIsHydrated} from '~/hooks/useIsHydrated';
-import {useCartFetchers} from '~/hooks/useCartFetchers';
+import {cn} from '~/lib/utils/cn';
 import type {RootLoader} from '~/root';
+import {Button} from './ui/button';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -258,64 +261,95 @@ function DesktopHeader({
 }) {
   const params = useParams();
   const {y} = useWindowScroll();
+  console.log(y);
   return (
     <header
       role="banner"
-      className={`${
-        isHome
-          ? 'bg-primary/80 dark:bg-contrast/60 text-contrast dark:text-primary shadow-darkHeader'
-          : 'bg-contrast/80 text-primary'
-      } ${
-        !isHome && y > 50 && ' shadow-lightHeader'
-      } hidden h-nav lg:flex items-center sticky transition duration-300 backdrop-blur-lg z-40 top-0 justify-between w-full leading-none gap-8 px-12 py-8`}
+      className={cn(
+        y > 50 && 'opacity-0',
+        'hidden h-nav lg:flex items-center sticky transition duration-300 z-40 top-0 justify-between w-full leading-none gap-8 px-12 py-12',
+      )}
     >
-      <div className="flex gap-12">
-        <Link className="font-bold" to="/" prefetch="intent">
-          {title}
-        </Link>
-        <nav className="flex gap-8">
-          {/* Top level menu items */}
-          {(menu?.items || []).map((item) => (
-            <Link
-              key={item.id}
-              to={item.to}
-              target={item.target}
-              prefetch="intent"
-              className={({isActive}) =>
-                isActive ? 'pb-1 border-b -mb-px' : 'pb-1'
-              }
-            >
-              {item.title}
-            </Link>
-          ))}
-        </nav>
-      </div>
-      <div className="flex items-center gap-1">
-        <Form
-          method="get"
-          action={params.locale ? `/${params.locale}/search` : '/search'}
-          className="flex items-center gap-2"
+      <div className="flex justify-between items-center w-full gap-12">
+        <Link
+          className={cn(
+            isHome ? 'text-primary' : 'text-contrast',
+            'group inline-flex items-center gap-1',
+          )}
+          to="/"
+          prefetch="intent"
         >
-          <Input
-            className={
-              isHome
-                ? 'focus:border-contrast/20 dark:focus:border-primary/20'
-                : 'focus:border-primary/20'
-            }
-            type="search"
-            variant="minisearch"
-            placeholder="Search"
-            name="q"
-          />
-          <button
-            type="submit"
-            className="relative flex items-center justify-center w-8 h-8 focus:ring-primary/5"
-          >
-            <IconSearch />
-          </button>
-        </Form>
-        <AccountLink className="relative flex items-center justify-center w-8 h-8 focus:ring-primary/5" />
-        <CartCount isHome={isHome} openCart={openCart} />
+          <span className="text-3xl font-normal tracking-[-0.045em]">
+            {title}
+          </span>
+
+          <span className="flex items-center gap-1">
+            <span className="h-px w-3 bg-current opacity-40 transition-all duration-300 group-hover:w-6" />
+
+            <span className="text-[0.65rem] font-light uppercase tracking-[0.2em] opacity-70 transition-all duration-300 group-hover:opacity-100">
+              Outdoor
+            </span>
+          </span>
+        </Link>
+        <div
+          className={cn(
+            isHome ? 'bg-primary text-contrast' : 'bg-contrast/80 text-primary',
+            'flex items-center shadow-lg h-16 rounded-3xl px-4 py-4 transition-opacity',
+          )}
+        >
+          <nav className="flex gap-1 h-full items-center">
+            {/* Top level menu items */}
+            {(menu?.items || []).map((item) => (
+              <Button
+                asChild
+                variant="unstyled"
+                className="h-full"
+                key={item.id}
+              >
+                <Link
+                  to={item.to}
+                  target={item.target}
+                  prefetch="intent"
+                  className=""
+                  //   className={({isActive}) =>
+                  //     cn(isActive ? 'bg-accent text-primary' : 'bg-transparent')
+                  //   }
+                >
+                  {item.title}
+                </Link>
+              </Button>
+            ))}
+          </nav>
+          <div className="flex items-center gap-2">
+            <Form
+              method="get"
+              action={params.locale ? `/${params.locale}/search` : '/search'}
+              className="flex items-center gap-2"
+            >
+              <Input
+                className={
+                  isHome
+                    ? 'focus:border-contrast/20 dark:focus:border-primary/20'
+                    : 'focus:border-primary/20'
+                }
+                type="search"
+                variant="minisearch"
+                placeholder="Search"
+                name="q"
+              />
+              <Button
+                size="icon"
+                type="submit"
+                variant="unstyled"
+                className="relative"
+              >
+                <Search size={64} width={48} height={48} />
+              </Button>
+            </Form>
+            <AccountLink className="relative" />
+            <CartCount isHome={isHome} openCart={openCart} />
+          </div>
+        </div>
       </div>
     </header>
   );
@@ -326,13 +360,15 @@ function AccountLink({className}: {className?: string}) {
   const isLoggedIn = rootData?.isLoggedIn;
 
   return (
-    <Link to="/account" className={className}>
-      <Suspense fallback={<IconLogin />}>
-        <Await resolve={isLoggedIn} errorElement={<IconLogin />}>
-          {(isLoggedIn) => (isLoggedIn ? <IconAccount /> : <IconLogin />)}
-        </Await>
-      </Suspense>
-    </Link>
+    <Button asChild size="icon" variant="unstyled" className={className}>
+      <Link to="/account">
+        <Suspense fallback={<IconLogin />}>
+          <Await resolve={isLoggedIn} errorElement={<IconLogin />}>
+            {(isLoggedIn) => (isLoggedIn ? <CircleUserRound /> : <UserRound />)}
+          </Await>
+        </Suspense>
+      </Link>
+    </Button>
   );
 }
 
@@ -375,15 +411,18 @@ function Badge({
   const BadgeCounter = useMemo(
     () => (
       <>
-        <IconBag />
+        <Backpack size={24} />
         <div
-          className={`${
+          className={cn(
+            'absolute bottom-0 right-0 text-[0.525rem] font-medium subpixel-antialiased h-4 min-w-[0.75rem] flex items-center justify-center leading-none text-center rounded-full w-auto px-[0.125rem] pb-px',
             dark
               ? 'text-primary bg-contrast dark:text-contrast dark:bg-primary'
-              : 'text-contrast bg-primary'
-          } absolute bottom-1 right-1 text-[0.625rem] font-medium subpixel-antialiased h-3 min-w-[0.75rem] flex items-center justify-center leading-none text-center rounded-full w-auto px-[0.125rem] pb-px`}
+              : 'text-contrast bg-primary',
+          )}
         >
-          <span>{count || 0}</span>
+          <span className="flex items-center justify-center h-full -mb-[3px]">
+            {count || 0}
+          </span>
         </div>
       </>
     ),
@@ -391,12 +430,14 @@ function Badge({
   );
 
   return isHydrated ? (
-    <button
+    <Button
+      variant="unstyled"
+      size="icon"
       onClick={openCart}
-      className="relative flex items-center justify-center w-8 h-8 focus:ring-primary/5"
+      className="relative flex items-center justify-center w-8 h-8"
     >
       {BadgeCounter}
-    </button>
+    </Button>
   ) : (
     <Link
       to="/cart"
