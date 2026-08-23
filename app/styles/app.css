@@ -23,10 +23,10 @@
     --font-size-lead: 1.125rem;
     /* text-lg */
 
-    --font-size-heading: 2rem;
+    --font-size-heading: 1.5rem;
     /* text-2xl */
 
-    --font-size-display: 3rem;
+    --font-size-display: 2.5rem;
     /* text-4xl */
 
     --color-shop-pay: #5a31f4;
@@ -85,10 +85,10 @@
 
     @media (min-width: 48em) {
         --height-nav: 6rem;
-        --font-size-heading: 2.25rem;
+        --font-size-heading: 2rem;
         /* text-4xl */
 
-        --font-size-display: 3.75rem;
+        --font-size-display: 3rem;
         /* text-6xl */
     }
 
