@@ -240,7 +240,7 @@ const COLLECTION_CONTENT_FRAGMENT = `#graphql
     handle
     title
     descriptionHtml
-    heading: metafield(namespace: "hero", key: "title") {
+    heading: metafield(namespace: "hero", key: "heading") {
       value
     }
     byline: metafield(namespace: "hero", key: "byline") {
