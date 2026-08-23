@@ -6,6 +6,7 @@ import {
   type MetaArgs,
 } from '@shopify/remix-oxygen';
 import {Suspense} from 'react';
+import {Categories} from '~/components/categories';
 
 import {FeaturedCollections} from '~/components/FeaturedCollections';
 import {Hero} from '~/components/Hero';
@@ -159,7 +160,7 @@ export default function Homepage() {
       {primaryHero && (
         <Hero {...primaryHero} height="full" top loading="eager" />
       )}
-
+      <Categories />
       {featuredProducts && (
         <Suspense>
           <Await resolve={featuredProducts}>
