@@ -23,8 +23,8 @@ export function Text({
 }) {
   const colors: Record<string, string> = {
     default: 'inherit',
-    primary: 'text-primary/90',
-    subtle: 'text-primary/50',
+    primary: 'text-primary',
+    subtle: 'text-contrast/70',
     notice: 'text-notice',
     contrast: 'text-contrast/90',
   };
